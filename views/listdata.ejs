@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Lab Node.js 101</title>
+   </head>
+   <body>
+      <a href="/form">Create a new record.</a>
+      <table width="600" border="1">
+         <thead>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Update</th>
+            <th>Delete</th>
+         </thead>
+         <tbody>
+            <% if ( resultsPerson.length> 0 ) { %>
+            <% resultsPerson.forEach ( function ( recordPerson, index ) { %>
+            <form action="/submit" method="POST"></form>
+            <tr>
+               <td>
+                  <%= recordPerson.firstname; %>
+               </td>
+               <td>
+                  <%= recordPerson.lastname; %>
+               </td>
+               <td>
+                  <button class="update-btn" data-id="<%= recordPerson.id %>">Update</button>
+               </td>
+               <td>
+                  <button class="delete-btn" data-id="<%= recordPerson.id %>">Delete</button>
+               </td>
+            </tr>
+            </form>
+            <% } ); %>
+            <% } else { %>
+            <tr>
+               <td colspan="100%">- ไม่มีข้อมูล -</td>
+            </tr>
+            <% } %>
+         </tbody>
+      </table>
+      <script>
+         document.querySelectorAll('.update-btn').forEach(button => {
+             button.addEventListener('click', function() {
+                 const id = this.getAttribute('data-id');
+                 // Perform an action with the ID, such as updating data or redirecting to an update page
+                 alert('Clicked Update button with ID: ' + id);
+                 window.location.href = '/update/'+id;
+             });
+         });
+
+         document.querySelectorAll('.delete-btn').forEach(button => {
+             button.addEventListener('click', function() {
+                 const id = this.getAttribute('data-id');
+                 // Perform an action with the ID, such as updating data or redirecting to an update page
+                 alert('Clicked Delete button with ID: ' + id);
+                 window.location.href = '/delete/'+id;
+             });
+         });
+     </script>
+   </body>
+</html>

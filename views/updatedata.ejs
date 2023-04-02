@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lab Node.js 101 (Update form)</title>
+    </head>
+    <body>
+        <h3>Index of Person: <%= idPerson; %></h3> 
+        <form action="/updatesave" method="POST">
+            <input type="hidden" name="idperson" value="<%= idPerson; %>">
+            <div>
+                <span>Firstname : </span>
+                <% if ( typeof initData != "undefined" && initData.firstname ) { %>
+                <input type="text" name="firstname" value="<%= initData.firstname; %>" />
+                <% } else { %>
+                <input type="text" name="firstname" value="" />
+                <% } %> <% if ( typeof errorData != "undefined" && errorData.hasOwnProperty ( "firstname" ) ) { %>
+                <span><%= errorData.firstname.msg; %></span>
+                <% } %>
+            </div>
+            <div>
+                <span>Lastname : </span>
+                <% if ( typeof initData != "undefined" && initData.lastname ) { %>
+                <input type="text" name="lastname" value="<%= initData.lastname; %>" />
+                <% } else { %>
+                <input type="text" name="lastname" value="" />
+                <% } %> <% if ( typeof errorData != "undefined" && errorData.hasOwnProperty ( "lastname" ) ) { %>
+                <span><%= errorData.lastname.msg; %></span>
+                <% } %>
+            </div>
+            <input type="submit" value="submit" />
+        </form>
+    </body>
+</html>
